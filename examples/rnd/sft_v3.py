@@ -46,13 +46,13 @@ class ModelArguments(dllm.utils.ModelArguments):
 
 @dataclass
 class DataArguments(dllm.utils.DataArguments):
-    dataset_args: str = "HuggingFaceTB/smoltalk[train:10000,test:1000]"
+    dataset_args: str = "radicalnumerics/rnd-sft-alpaca-cleaned[train:10000,test:100]"
     truncation: str = "right"
 
 
 @dataclass
 class TrainingArguments(dllm.utils.TrainingArguments):
-    output_dir: str = "models/RND1-SFT-0910/smoltalk[train:10000,test:1000]"
+    output_dir: str = "models/RND1-SFT-0910/rnd-sft-alpaca-cleaned[train:10000,test:100]"
     # rnd specific
     # group_by_length: bool = True
     mask_prompt_loss: bool = field(

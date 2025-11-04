@@ -29,6 +29,7 @@ class ModelArguments:
 
 @dataclass
 class DataArguments:
+    load_from_disk: bool = False
     dataset_args: str = None  # overwrite this
     num_proc: int = 8
     disable_caching: bool = False
@@ -49,19 +50,20 @@ class DataArguments:
 class TrainingArguments(transformers.TrainingArguments):
     output_dir: str = None  # overwrite this
     report_to: str = "wandb"
+    run_name: str = None
     overwrite_output_dir: bool = True
     seed: int = 42
-    per_device_train_batch_size: int = 4
-    per_device_eval_batch_size: int = 4
+    per_device_train_batch_size: int = 8
+    per_device_eval_batch_size: int = 8
     gradient_accumulation_steps: int = 1
     learning_rate: float = 2e-5
     lr_scheduler_type: str = "cosine"
     warmup_ratio: float = 0.1
     bf16: bool = True
-    num_train_epochs: float = 4
-    logging_steps: float = 10
-    eval_on_start: bool = False
+    num_train_epochs: float = 1
+    logging_steps: float = 1
+    eval_on_start: bool = True
     eval_strategy: str = "steps"
-    eval_steps: float = 0.25
+    eval_steps: float = 0.05
     save_steps: float = 0.25
     save_only_model: bool = True

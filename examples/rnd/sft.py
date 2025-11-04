@@ -46,7 +46,7 @@ class ModelArguments(dllm.utils.ModelArguments):
 
 @dataclass
 class DataArguments(dllm.utils.DataArguments):
-    dataset_args: str = "HuggingFaceTB/smoltalk[train:10000,test:1000]"
+    dataset_args: str = "HuggingFaceTB/smoltalk[train:10000,test:100]"
     truncation: str = "right"
 
 

@@ -150,8 +150,10 @@ class RND1Attention(nn.Module):
 
         if use_sdpa:
             if attention_mask is not None and isinstance(attention_mask, torch.Tensor):
-                if attention_mask.dtype not in [torch.bool, torch.float32, torch.float16, torch.bfloat16]:
-                    attention_mask = attention_mask.to(dtype=query_states.dtype)
+                # if attention_mask.dtype not in [torch.bool, torch.float32, torch.float16, torch.bfloat16]:
+                #     attention_mask = attention_mask.to(dtype=query_states.dtype)
+                # always convert attention_mask to match query_states dtype (addressing issue with running sft)
+                attention_mask = attention_mask.to(dtype=query_states.dtype)
             
             assert not self.is_causal, f"Attention layer {self.layer_idx} is causal"
             attn_out = torch.nn.functional.scaled_dot_product_attention(
